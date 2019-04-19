@@ -92,14 +92,26 @@
 			interrupt-parent = <&L1>;
 		};
 
-		sd_slot: spi@60020000 {
-			compatible = "xlnx,";
+		spi: spi@60020000 {
+			compatible = "xlnx,axi-quad-spi-1.00.a";
+			status = "okay";
 			reg = <0x60020000 0x00010000>;
 			interrupts = <2>;
 			interrupt-parent = <&L1>;
 			xlnx,fifo-exist = <0x1>;
 			xlnx,num-ss-bits = <0x1>;
 			xlnx,num-transfer-bits = <0x8>;
+			xlnx,sck-ration = <0x2>;
+			mmc-slot@0 {
+				spi-max-frequency = <30000000>;
+				compatible = "mmc-spi-slot";
+				reg = <0>;
+				disable-wp;
+//				mmc2_pwrseq@0 {
+//       			compatible = "mmc-pwrseq-simple";
+//        			reset-gpios = <&spi 0 1>;
+//				};
+			};
 		};
 		
 		L10: rom@10000 {
