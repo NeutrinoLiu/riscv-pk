@@ -62,6 +62,7 @@ endif
 
 # Installation directories
 
+prefix       := /home/neutrino/tools
 enable_stow  := no
 
 ifeq ($(enable_stow),yes)
