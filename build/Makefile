@@ -62,7 +62,6 @@ endif
 
 # Installation directories
 
-prefix       := /home/neutrino/tools
 enable_stow  := no
 
 ifeq ($(enable_stow),yes)
@@ -376,18 +375,13 @@ endif
 # Regenerate configure information
 #-------------------------------------------------------------------------
 
-config.status : $(src_dir)/configure
-	./config.status --recheck
+config.status :
 
 sprojs_mk_in = \
   $(join $(addprefix $(src_dir)/, $(sprojs_enabled)), \
          $(patsubst  %, /%.mk.in, $(sprojs_enabled)))
 
-Makefile : $(src_dir)/Makefile.in $(sprojs_mk_in) config.status
-	./config.status
-
-dist_junk += config.status config.h Makefile config.log
-
+Makefile : 
 #-------------------------------------------------------------------------
 # Distribution
 #-------------------------------------------------------------------------
